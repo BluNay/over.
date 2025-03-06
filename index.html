@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Compte à rebours</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap"
+			rel="stylesheet" />
+		<style>
+			body {
+				background-color: #000;
+				color: #fff;
+				font-family: "Manrope", sans-serif;
+			}
+			.navbar {
+				background-color: #000;
+				height: 80px;
+			}
+			.navbar-brand {
+				position: absolute;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+			#countdown {
+				font-size: 3rem;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container">
+				<a class="navbar-brand" href="#">
+					<img src="logo.png" alt="Logo" width="50" />
+				</a>
+			</div>
+		</nav>
+
+		<div class="container">
+			<div class="row min-vh-100 align-items-center">
+				<div class="col-12 text-center">
+					<h1 class="mb-4">Compte à rebours</h1>
+					<div id="countdown"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+			function updateCountdown() {
+				const now = new Date();
+				const tonight = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59);
+				const diff = tonight - now;
+
+				const hours = Math.floor(diff / 3600000);
+				const minutes = Math.floor((diff % 3600000) / 60000);
+				const seconds = Math.floor((diff % 60000) / 1000);
+
+				document.getElementById("countdown").innerHTML = `${hours
+					.toString()
+					.padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds
+					.toString()
+					.padStart(2, "0")}`;
+			}
+
+			setInterval(updateCountdown, 1000);
+			updateCountdown();
+		</script>
+	</body>
+</html>
